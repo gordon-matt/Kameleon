@@ -2,6 +2,7 @@
 
 	<PropertyGroup>
 		<Description>PostgreSQL storage for the Kameleon theme engine.</Description>
+		<PackageTags>themes;theme-engine;entity-framework-core;efcore;postgresql;npgsql</PackageTags>
 	</PropertyGroup>
 
 	<ItemGroup>

@@ -13,10 +13,13 @@
 		<PackageTags>themes;theme-engine;blazor;razor-class-library;multi-tenant</PackageTags>
 		<PackageIcon>Icon.png</PackageIcon>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageProjectUrl>https://github.com/gordon-matt/Kameleon</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/gordon-matt/Kameleon</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
 
-	<ItemGroup Condition="'$(IsPackable)' != 'false'">
+	<!-- Packed into every package. Projects that are not packed (demo, samples, tests) never use these. -->
+	<ItemGroup>
 		<None Include="$(MSBuildThisFileDirectory)_Misc\Icon.png" Pack="true" PackagePath="\" Visible="false" />
 		<None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" Visible="false" />
 	</ItemGroup>

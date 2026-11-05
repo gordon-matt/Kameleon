@@ -31,6 +31,8 @@ builder.Services.AddNetForgeComponents(ui =>
     ui.AccentColorDark = "#2dd4bf";
 });
 
+builder.Services.ConfigureNetForgeToastSounds(sounds => sounds.EnableSounds = true);
+
 builder.Services.Configure<ForgeShellOptions>(shell =>
 {
     shell.Brand = "Kameleon";
