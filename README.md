@@ -1,4 +1,4 @@
-# Kameleon
+<img src="https://github.com/gordon-matt/Kameleon/blob/master/_Misc/Logo.png" alt="Logo" width="350" />
 
 A theme engine for Blazor web apps on .NET 10. A theme decides how a site looks and where page content goes. Pages say what they show, and the theme arranges it.
 
