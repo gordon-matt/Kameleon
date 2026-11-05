@@ -28,8 +28,6 @@
 }
 
 .atlas-brand { display: flex; gap: 0.6rem; align-items: center; color: inherit; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; }
-.atlas-mark { color: var(--atlas-accent); font-size: 1.3rem; }
-
 .atlas-nav { display: flex; flex-direction: column; gap: 0.15rem; }
 .atlas-nav a { padding: 0.5rem 0.75rem; border-left: 3px solid transparent; color: inherit; text-decoration: none; }
 .atlas-nav a:hover { background: var(--nf-surface, #fff); }

@@ -1,0 +1,58 @@
+@inherits ThemeLayoutBase
+
+<div class="bs-theme">
+    <nav class="navbar navbar-expand-md bsx-navbar" aria-label="Primary">
+        <div class="@ContainerClass">
+            <a class="navbar-brand bsx-brand" href=""><ThemeRegion Name="@ThemeRegions.Header">Kameleon</ThemeRegion></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#bsx-navbar"
+                    aria-controls="bsx-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="bsx-navbar">
+                <div class="navbar-nav ms-auto">
+                    <div class="bsx-nav"><ThemeRegion Name="@ThemeRegions.PrimaryNavigation" /></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <ThemeRegion Name="@ThemeRegions.Hero">
+        <Template Context="content">
+            <section class="bsx-hero bg-body-tertiary border-bottom py-5">
+                <div class="@ContainerClass">@content</div>
+            </section>
+        </Template>
+    </ThemeRegion>
+
+    <div class="@ContainerClass py-4">
+        <ThemeRegion Name="@ThemeRegions.Breadcrumbs">
+            <Template Context="content">
+                <nav class="bsx-breadcrumbs mb-3" aria-label="Breadcrumb">@content</nav>
+            </Template>
+        </ThemeRegion>
+        <div class="row g-4">
+            <main class="bsx-main @(HasRegion(ThemeRegions.Sidebar) ? "col-lg-8" : "col-12")">@Body</main>
+            @if (HasRegion(ThemeRegions.Sidebar))
+            {
+                <aside class="col-lg-4">
+                    <ThemeRegion Name="@ThemeRegions.Sidebar">
+                        <Template Context="content">
+                            <div class="bsx-sidebar card shadow-sm"><div class="card-body">@content</div></div>
+                        </Template>
+                    </ThemeRegion>
+                </aside>
+            }
+        </div>
+    </div>
+
+    <footer class="bsx-footer border-top text-body-secondary py-3 small">
+        <div class="@ContainerClass">
+            <ThemeRegion Name="@ThemeRegions.Footer">Bootstrap theme</ThemeRegion>
+        </div>
+    </footer>
+    <ThemeRegion Name="@ThemeRegions.Overlay" />
+</div>
+
+@code {
+    private string ContainerClass => Theme.IsSettingOn("fluid") ? "container-fluid" : "container";
+}

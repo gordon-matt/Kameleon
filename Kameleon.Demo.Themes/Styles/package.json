@@ -1,0 +1,12 @@
+{
+  "name": "kameleon-demo-bootstrap-theme",
+  "private": true,
+  "description": "Builds wwwroot/bootstrap/bootstrap-theme.css from bootstrap-theme.scss. Run: npm install && npm run build",
+  "scripts": {
+    "build": "sass --quiet-deps --silence-deprecation=import --silence-deprecation=global-builtin --silence-deprecation=color-functions --no-source-map --style=compressed --load-path=node_modules bootstrap-theme.scss ../wwwroot/bootstrap/bootstrap-theme.css && node scope-fixes.mjs ../wwwroot/bootstrap/bootstrap-theme.css"
+  },
+  "devDependencies": {
+    "bootstrap": "5.3.8",
+    "sass": "^1.90.0"
+  }
+}

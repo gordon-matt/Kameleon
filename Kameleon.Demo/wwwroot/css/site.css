@@ -8,6 +8,8 @@
 .demo-host-header-inner { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; padding-top: 0.9rem; padding-bottom: 0.9rem; }
 .demo-host-brand { color: inherit; font-weight: 700; text-decoration: none; }
 
+.demo-brand-logo { display: block; height: 2.4rem; width: auto; max-width: 100%; }
+
 .demo-host-nav { margin-left: auto; display: flex; gap: 0.25rem; }
 .demo-host-nav a { padding: 0.35rem 0.7rem; border-radius: 6px; color: inherit; text-decoration: none; }
 .demo-host-nav a.active { background: var(--nf-accent-soft); }

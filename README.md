@@ -386,7 +386,9 @@ The settings of each site and each user's choice are cached for `CacheDuration`.
 
 ## Demo
 
-`Kameleon.Demo` is a sample site with two compiled themes (Aurora and Atlas), one static theme (Harbour) and two pretend sites, so tenant settings can be tried. Requests from the local machine are signed in as an administrator.
+`Kameleon.Demo` is a sample site with three compiled themes (Aurora, Atlas and Bootstrap), one static theme (Harbour) and two pretend sites, so tenant settings can be tried. Requests from the local machine are signed in as an administrator.
+
+Themes do not depend on the UI library of the admin screens. A theme references only `Kameleon.Abstractions` and brings its own CSS framework. The Bootstrap theme in `Kameleon.Demo.Themes` shows how: its SCSS in `Styles/` compiles Bootstrap under a `.bs-theme` scope, so the framework's global resets cannot restyle other pages, and it loads Bootstrap's script through `ThemeDescriptor.Scripts`.
 
 ```
 dotnet run --project Kameleon.Demo

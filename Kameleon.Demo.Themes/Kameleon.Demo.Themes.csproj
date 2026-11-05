@@ -10,6 +10,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<!-- Sass sources for wwwroot/bootstrap; only the compiled output ships. -->
+		<Compile Remove="Styles\**" />
+		<Content Remove="Styles\**" />
+		<EmbeddedResource Remove="Styles\**" />
+		<None Remove="Styles\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\Kameleon.Abstractions\Kameleon.Abstractions.csproj" />
 	</ItemGroup>
 

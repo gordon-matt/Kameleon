@@ -1,0 +1,88 @@
+// Bootstrap, compiled so that everything sits under .bs-theme.
+//
+// ThemeHead loads a theme's stylesheets on every page of the document, including pages that use their own
+// layout. Bootstrap's global resets (html, body, a, h1...) would restyle all of them, so the whole framework
+// is nested under the theme's root element instead. scope-fixes.mjs then rewrites the few selectors that only
+// make sense at the document root (:root, html, body).
+//
+// Build: npm install && npm run build
+
+// The accent is declared on :root, never on .bs-theme, so the colour ThemeHead writes after this file wins.
+:root { --bsx-accent: #0d6efd; }
+
+.bs-theme {
+    @import "bootstrap/scss/functions";
+    @import "bootstrap/scss/variables";
+    @import "bootstrap/scss/variables-dark";
+    @import "bootstrap/scss/maps";
+    @import "bootstrap/scss/mixins";
+    @import "bootstrap/scss/utilities";
+
+    @import "bootstrap/scss/root";
+    @import "bootstrap/scss/reboot";
+    @import "bootstrap/scss/type";
+    @import "bootstrap/scss/containers";
+    @import "bootstrap/scss/grid";
+    @import "bootstrap/scss/buttons";
+    @import "bootstrap/scss/transitions";
+    @import "bootstrap/scss/dropdown";
+    @import "bootstrap/scss/nav";
+    @import "bootstrap/scss/navbar";
+    @import "bootstrap/scss/card";
+    @import "bootstrap/scss/breadcrumb";
+    @import "bootstrap/scss/badge";
+    @import "bootstrap/scss/forms";
+    @import "bootstrap/scss/helpers";
+
+    @import "bootstrap/scss/utilities/api";
+
+    // The theme's own rules. They use Bootstrap's classes through @extend, so the host's links, which carry
+    // no Bootstrap classes, still look right.
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .bsx-main a:not(.btn),
+    .bsx-sidebar a:not(.btn),
+    .bsx-breadcrumbs a { color: var(--bsx-accent); }
+
+    .bsx-navbar {
+        background-color: var(--bsx-accent);
+        --bs-navbar-color: rgb(255 255 255 / 0.85);
+        --bs-navbar-hover-color: #fff;
+        --bs-navbar-active-color: #fff;
+        --bs-navbar-brand-color: #fff;
+        --bs-navbar-brand-hover-color: #fff;
+        --bs-navbar-toggler-border-color: rgb(255 255 255 / 0.4);
+    }
+
+    .bsx-navbar .navbar-toggler-icon { filter: invert(1) grayscale(1) brightness(2); }
+
+    // A logo made for a light page stays readable on a coloured navbar when it sits on a white pill.
+    .bsx-brand img { display: block; height: 2.5rem; width: auto; padding: 0.2rem 0.65rem; border-radius: 0.5rem; background: #fff; }
+
+    // The host's navigation links carry no Bootstrap classes, so they borrow the nav-link look here.
+    .bsx-nav { display: flex; flex-direction: column; }
+    .bsx-nav a { @extend .nav-link; }
+    .bsx-nav a.active { color: var(--bs-navbar-active-color); font-weight: 600; }
+    @include media-breakpoint-up(md) { .bsx-nav { flex-direction: row; } }
+
+    // Content a page puts in the hero region is plain markup, so the theme styles the elements.
+    .bsx-hero h1 { margin-bottom: 0.5rem; font-size: calc(1.5rem + 1.5vw); font-weight: 700; }
+    .bsx-hero p { margin: 0; font-size: 1.15rem; color: var(--bs-secondary-color); }
+    @include media-breakpoint-up(xl) { .bsx-hero h1 { font-size: 2.75rem; } }
+
+    .bsx-breadcrumbs { font-size: 0.875rem; color: var(--bs-secondary-color); }
+
+    .bsx-sidebar h2 { font-size: 1.1rem; }
+
+    .bsx-footer { margin-top: auto; }
+
+    .bsx-main .demo-article h3 { font-size: 1.15rem; }
+
+    .bsx-main .demo-article {
+        background: var(--bs-body-bg);
+        border-color: var(--bs-border-color);
+        border-left: 4px solid var(--bsx-accent);
+    }
+}

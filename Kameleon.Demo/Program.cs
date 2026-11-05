@@ -8,6 +8,7 @@ using Kameleon.Demo.Components.Layout;
 using Kameleon.Demo.Infrastructure;
 using Kameleon.Demo.Themes.Atlas;
 using Kameleon.Demo.Themes.Aurora;
+using Kameleon.Demo.Themes.Bootstrap;
 using Kameleon.Tenancy;
 using Microsoft.AspNetCore.Authentication;
 
@@ -32,8 +33,10 @@ builder.Services.AddNetForgeComponents(ui =>
 
 builder.Services.Configure<ForgeShellOptions>(shell =>
 {
-    shell.Brand = "Kameleon demo";
+    shell.Brand = "Kameleon";
     shell.BrandHref = "/";
+    shell.LogoUrl = "img/Logo.png";
+    shell.MarkUrl = "img/Icon.png";
     shell.UseSharedMenu = true;
 });
 
@@ -48,6 +51,7 @@ builder.Services.AddSingleton<IThemeTenantDirectory, DemoSiteProvider.Directory>
 
 builder.Services.AddKameleonTheme<AuroraTheme>();
 builder.Services.AddKameleonTheme<AtlasTheme>();
+builder.Services.AddKameleonTheme<BootstrapTheme>();
 
 builder.Services.AddKameleon(options =>
 {
