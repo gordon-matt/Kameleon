@@ -1,0 +1,33 @@
+@inherits ThemeLayoutBase
+
+@* The site's own layout. Static themes restyle it, and it is used when no theme resolves. *@
+<div class="demo-host">
+    <header class="demo-host-header">
+        <div class="demo-host-container demo-host-header-inner">
+            <a class="demo-host-brand" href=""><ThemeRegion Name="@ThemeRegions.Header" /></a>
+            <nav class="demo-host-nav" aria-label="Primary">
+                <ThemeRegion Name="@ThemeRegions.PrimaryNavigation" />
+            </nav>
+        </div>
+    </header>
+    <ThemeRegion Name="@ThemeRegions.Hero">
+        <Template Context="content">
+            <section class="demo-host-hero"><div class="demo-host-container">@content</div></section>
+        </Template>
+    </ThemeRegion>
+    <div class="demo-host-container demo-host-body @(HasRegion(ThemeRegions.Sidebar) ? "has-sidebar" : null)">
+        <main>@Body</main>
+        @if (HasRegion(ThemeRegions.Sidebar))
+        {
+            <aside class="demo-host-sidebar"><ThemeRegion Name="@ThemeRegions.Sidebar" /></aside>
+        }
+    </div>
+    <footer class="demo-host-footer">
+        <div class="demo-host-container">
+            <ThemeRegion Name="@ThemeRegions.Footer">
+                @(Theme.Theme is { } theme ? $"Styled by the {theme.Name} theme." : "No theme is in effect.")
+            </ThemeRegion>
+        </div>
+    </footer>
+    <ThemeRegion Name="@ThemeRegions.Overlay" />
+</div>

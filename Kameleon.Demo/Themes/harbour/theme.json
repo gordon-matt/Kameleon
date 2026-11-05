@@ -1,0 +1,20 @@
+{
+  // A static theme: no code, just files. It restyles the site's own layout.
+  "schemaVersion": 1,
+  "id": "harbour",
+  "name": "Harbour",
+  "version": "1.0.0",
+  "description": "A calm navy theme that restyles the site's own layout. No code, just CSS.",
+  "author": "Kameleon samples",
+  "preview": "preview.svg",
+  "stylesheets": [ "harbour.css" ],
+  "settings": [
+    {
+      "key": "accent",
+      "name": "Accent colour",
+      "kind": "color",
+      "default": "#1d4ed8",
+      "cssVariable": "--harbour-accent"
+    }
+  ]
+}

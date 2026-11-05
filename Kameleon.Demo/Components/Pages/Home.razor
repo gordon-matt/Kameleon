@@ -1,0 +1,62 @@
+@page "/"
+
+<PageTitle>Kameleon demo</PageTitle>
+
+<RegionContent Name="@ThemeRegions.Hero">
+    <h1>One site, many looks</h1>
+    <p>This page supplies its hero and sidebar. The current theme decides where they go and how they look.</p>
+</RegionContent>
+
+<RegionContent Name="@ThemeRegions.Sidebar">
+    <h2>Try it</h2>
+    <p>Pick another theme below, or change the site's default and each theme's settings under <a href="admin/themes">Manage themes</a>.</p>
+    <ThemePicker />
+</RegionContent>
+
+<RegionContent Name="@ThemeRegions.Breadcrumbs">
+    <span>Home</span>
+</RegionContent>
+
+<section class="demo-section">
+    <h2>Which site?</h2>
+    <p>
+        The demo pretends to host two sites so tenant settings can be tried. You are on
+        <strong>@(DemoSites.Current(Theme.TenantId))</strong>.
+        @foreach (var site in Infrastructure.DemoSiteProvider.Sites.Where(site => site.Id != Theme.TenantId))
+        {
+            <a href="@($"demo/site/{site.Id}")" data-enhance-nav="false">Switch to @site.Name</a>
+        }
+    </p>
+    <p class="demo-muted">
+        Theme: <strong>@(Theme.Theme?.Name ?? "none")</strong>
+        @if (Theme.Layout is { } themeLayout)
+        {
+            <span> · layout <strong>@themeLayout.Name</strong></span>
+        }
+        @if (Theme.IsUserOverride)
+        {
+            <span> · your own choice</span>
+        }
+    </p>
+</section>
+
+<section class="demo-section">
+    <h2>Latest articles</h2>
+    <p class="demo-muted">Rendered through a theme view: the Atlas theme replaces these cards with its own.</p>
+    @foreach (var article in Articles)
+    {
+        <ThemeView Name="@DemoViews.Article" Fallback="typeof(DemoArticle)" Parameters="article" />
+    }
+</section>
+
+@code {
+    [CascadingParameter]
+    private ThemeContext Theme { get; set; } = ThemeContext.None(string.Empty, null);
+
+    private static readonly IReadOnlyList<Dictionary<string, object?>> Articles =
+    [
+        new() { ["Title"] = "Choosing a theme per site", ["Summary"] = "Each site picks its own default and the themes its visitors may choose from.", ["Author"] = "Ada" },
+        new() { ["Title"] = "Regions instead of sections", ["Summary"] = "Pages fill named regions; the theme decides where each one is shown.", ["Author"] = "Grace" },
+        new() { ["Title"] = "Static themes", ["Summary"] = "A folder with a theme.json and some CSS restyles the site's own layout.", ["Author"] = "Linus" },
+    ];
+}

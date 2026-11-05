@@ -1,0 +1,22 @@
+<header class="aurora-header">
+    <div class="aurora-shell aurora-header-inner">
+        <a class="aurora-brand" href="">
+            <span class="aurora-mark" aria-hidden="true"></span>
+            <span>
+                <strong><ThemeRegion Name="@ThemeRegions.Header">Kameleon</ThemeRegion></strong>
+                @if (Theme.Setting("tagline") is { Length: > 0 } tagline)
+                {
+                    <small>@tagline</small>
+                }
+            </span>
+        </a>
+        <nav class="aurora-nav" aria-label="Primary">
+            <ThemeRegion Name="@ThemeRegions.PrimaryNavigation" />
+        </nav>
+    </div>
+</header>
+
+@code {
+    [CascadingParameter]
+    private ThemeContext Theme { get; set; } = ThemeContext.None(string.Empty, null);
+}

@@ -1,0 +1,10 @@
+@page "/admin/themes/catalog"
+@attribute [Authorize(Policy = KameleonPolicies.ManageCatalog)]
+@layout KameleonAdminLayout
+
+<PageTitle>Theme catalog</PageTitle>
+
+@if (isDefaultPath)
+{
+    <ThemeCatalogScreen />
+}

@@ -1,0 +1,20 @@
+@* The site's own article teaser, used unless the theme replaces the demo.article view. *@
+<article class="demo-article">
+    <h3>@Title</h3>
+    <p>@Summary</p>
+    @if (!string.IsNullOrEmpty(Author))
+    {
+        <p class="demo-article-meta">By @Author</p>
+    }
+</article>
+
+@code {
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public string? Summary { get; set; }
+
+    [Parameter]
+    public string? Author { get; set; }
+}

@@ -1,0 +1,17 @@
+global using Ardalis.Result;
+global using Heroicsoft.NetForge.Abstractions.Auth;
+global using Kameleon.Administration;
+global using Kameleon.Catalog;
+global using Kameleon.Components;
+global using Kameleon.Models;
+global using Kameleon.Resolution;
+global using Kameleon.Security;
+global using Kameleon.Settings;
+global using Kameleon.Tenancy;
+global using Kameleon.Tests.Infrastructure;
+global using Microsoft.AspNetCore.Components;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging.Abstractions;
+global using Microsoft.Extensions.Options;
+global using Moq;
+global using Xunit;

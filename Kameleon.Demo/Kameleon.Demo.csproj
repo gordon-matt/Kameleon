@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<IsPackable>false</IsPackable>
+		<BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Kameleon\Kameleon.csproj" />
+		<ProjectReference Include="..\Kameleon.Data.Sqlite\Kameleon.Data.Sqlite.csproj" />
+		<ProjectReference Include="..\Kameleon.Demo.Themes\Kameleon.Demo.Themes.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="Themes\**\*" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+
+</Project>

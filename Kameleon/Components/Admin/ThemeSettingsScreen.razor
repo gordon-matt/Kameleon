@@ -1,0 +1,154 @@
+<PageHeader Title="@Title" Icon="palette" Description="Choose the theme visitors see, which themes are offered, and each theme's settings." />
+
+@if (data is null && loadError is null)
+{
+    <p class="nf-muted">Loading themes…</p>
+}
+else if (loadError is not null)
+{
+    <EmptyState Icon="alert" Title="The themes could not be loaded" Description="@loadError" />
+}
+else
+{
+    @if (data!.DefaultIsUnavailable)
+    {
+        <div class="km-callout is-warning" role="status">
+            <Icon Name="warning" Size="18" />
+            <div>
+                <strong>The default theme is no longer available.</strong>
+                <p>Visitors see @(FallbackName ?? "the site's built-in layout") until another default is chosen.</p>
+            </div>
+        </div>
+    }
+
+    <div class="km-section">
+        <Switch Value="@data.AllowUserOverride" ValueChanged="SetAllowUserOverrideAsync" Disabled="@busy"
+                Label="Let signed-in users choose their own theme"
+                Description="They can pick any theme turned on below. Visitors who have not chosen see the default." />
+    </div>
+
+    @if (data.Themes.Count == 0)
+    {
+        <EmptyState Icon="palette" Title="No themes available" Description="No installed theme is available to this site yet." />
+    }
+    else
+    {
+        <CardGrid Class="km-theme-grid">
+            @foreach (var item in data.Themes)
+            {
+                <Card @key="item.Theme.Id" Title="@item.Theme.Name" Description="@item.Theme.Description" Class="@(item.IsDefault ? "km-theme-card is-default" : "km-theme-card")">
+                    <TitleEnd>
+                        @if (item.IsDefault)
+                        {
+                            <span class="nf-badge nf-badge-accent">Default</span>
+                        }
+                    </TitleEnd>
+                    <ChildContent>
+                        @if (item.Theme.PreviewImageUrl is { } preview)
+                        {
+                            <img class="km-theme-preview" src="@preview" alt="" loading="lazy" />
+                        }
+                        <p class="nf-muted nf-small">
+                            Version @item.Theme.Version
+                            @if (item.Theme.Author is { } author)
+                            {
+                                <span> · @author</span>
+                            }
+                            @if (item.Theme.Kind == ThemeKind.Static)
+                            {
+                                <span> · Styles only</span>
+                            }
+                        </p>
+                        @if (item.IsDefault && item.Theme.Layouts.Count > 1)
+                        {
+                            <Field Label="Layout" For="@($"km-layout-{item.Theme.Id}")">
+                                <select id="@($"km-layout-{item.Theme.Id}")" class="nf-select" disabled="@busy"
+                                        value="@(data.DefaultLayoutId ?? string.Empty)" @onchange="args => SetLayoutAsync(item, args)">
+                                    <option value="">Theme default (@DefaultLayoutName(item))</option>
+                                    @foreach (var themeLayout in item.Theme.Layouts)
+                                    {
+                                        <option value="@themeLayout.Id">@themeLayout.Name</option>
+                                    }
+                                </select>
+                            </Field>
+                        }
+                        <Switch Value="@item.IsEnabled" ValueChanged="enabled => SetEnabledAsync(item, enabled)"
+                                Disabled="@(busy || item.IsDefault)" Label="Offered to visitors" Class="km-card-switch" />
+                    </ChildContent>
+                    <Actions>
+                        @if (item.SettingDefinitions.Count > 0)
+                        {
+                            <button type="button" class="nf-button nf-button-sm" disabled="@busy" @onclick="() => OpenSettings(item)">
+                                <Icon Name="settings" Size="14" /> Settings
+                            </button>
+                        }
+                        @if (!item.IsDefault)
+                        {
+                            <button type="button" class="nf-button nf-button-sm nf-button-primary" disabled="@busy" @onclick="() => SetDefaultAsync(item)">
+                                Make default
+                            </button>
+                        }
+                    </Actions>
+                </Card>
+            }
+        </CardGrid>
+    }
+}
+
+<Drawer Title="@($"{editing?.Theme.Name} settings")" Open="@(editing is not null)" Scrim="true" Width="440px" OnClose="CloseSettings">
+    <ChildContent>
+        @if (editing is not null)
+        {
+            @foreach (var definition in editing.SettingDefinitions)
+            {
+                string id = $"km-setting-{definition.Key}";
+                <Field Label="@definition.Name" For="@id">
+                    @switch (definition.Kind)
+                    {
+                        case ThemeSettingKind.Color:
+                            <div class="km-color">
+                                <input type="color" class="km-color-swatch" aria-label="@($"Pick {definition.Name}")"
+                                       value="@SwatchValue(definition)" @onchange="args => SetValue(definition, args.Value?.ToString())" />
+                                <input id="@id" class="nf-input" value="@ValueOf(definition)" placeholder="@definition.DefaultValue"
+                                       maxlength="9" @onchange="args => SetValue(definition, args.Value?.ToString())" />
+                            </div>
+                            break;
+                        case ThemeSettingKind.Boolean:
+                            <Switch Id="@id" Value="@IsOn(definition)" ValueChanged="on => SetFlag(definition, on)" />
+                            break;
+                        case ThemeSettingKind.Choice:
+                            <select id="@id" class="nf-select" value="@ValueOf(definition)" @onchange="args => SetValue(definition, args.Value?.ToString())">
+                                @foreach (string choice in definition.Choices)
+                                {
+                                    <option value="@choice">@choice</option>
+                                }
+                            </select>
+                            break;
+                        default:
+                            <input id="@id" class="nf-input" value="@ValueOf(definition)" placeholder="@definition.DefaultValue"
+                                   maxlength="@(definition.Kind == ThemeSettingKind.Url ? 1024 : definition.MaxLength)"
+                                   type="@(definition.Kind == ThemeSettingKind.Url ? "url" : "text")"
+                                   @onchange="args => SetValue(definition, args.Value?.ToString())" />
+                            break;
+                    }
+                    @if (definition.Description is { } description)
+                    {
+                        <p class="nf-hint">@description</p>
+                    }
+                    @if (ErrorFor(definition.Key) is { } error)
+                    {
+                        <p class="nf-validation" role="alert">@error</p>
+                    }
+                </Field>
+            }
+        }
+    </ChildContent>
+    <Footer>
+        <div class="nf-form-actions">
+            <button type="button" class="nf-button" disabled="@busy" @onclick="ResetSettings">Reset to defaults</button>
+            <span class="km-spacer"></span>
+            <button type="button" class="nf-button" @onclick="CloseSettings">Cancel</button>
+            <button type="button" class="nf-button nf-button-primary" disabled="@busy" @onclick="SaveSettingsAsync">@(busy ? "Saving…" : "Save")</button>
+        </div>
+    </Footer>
+</Drawer>

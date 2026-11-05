@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Description>Theme catalog, eligibility, resolution and settings for the Kameleon theme engine, without any UI.</Description>
+		<RootNamespace>Kameleon</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Ardalis.Result" Version="10.1.0" />
+		<PackageReference Include="Heroicsoft.NetForge.Abstractions" Version="1.2.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="Kameleon.Tests" />
+		<InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Kameleon.Abstractions\Kameleon.Abstractions.csproj" />
+		<ProjectReference Include="..\Kameleon.Data\Kameleon.Data.csproj" />
+	</ItemGroup>
+
+</Project>

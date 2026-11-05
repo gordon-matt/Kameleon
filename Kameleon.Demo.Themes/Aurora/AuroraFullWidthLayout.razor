@@ -1,0 +1,20 @@
+@inherits ThemeLayoutBase
+
+<div class="aurora is-full-width @(Theme.IsSettingOn("rounded") ? "is-rounded" : null)">
+    <AuroraHeader />
+    <ThemeRegion Name="@ThemeRegions.Hero">
+        <Template Context="content">
+            <section class="aurora-hero"><div class="aurora-shell">@content</div></section>
+        </Template>
+    </ThemeRegion>
+    <div class="aurora-shell aurora-body">
+        <ThemeRegion Name="@ThemeRegions.Breadcrumbs" />
+        <main class="aurora-main">@Body</main>
+    </div>
+    <footer class="aurora-footer">
+        <div class="aurora-shell">
+            <ThemeRegion Name="@ThemeRegions.Footer">Aurora theme</ThemeRegion>
+        </div>
+    </footer>
+    <ThemeRegion Name="@ThemeRegions.Overlay" />
+</div>

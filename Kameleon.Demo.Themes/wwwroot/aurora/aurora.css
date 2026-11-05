@@ -1,0 +1,72 @@
+/* Aurora: surfaces and text come from the host's colour scheme, so it works in light and dark.
+   The accent is declared on :root so that the accent setting, which ThemeHead writes after this file, wins. */
+
+:root { --aurora-accent: #0f766e; }
+
+.aurora {
+    --aurora-radius: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--nf-bg, #f6f7f9);
+    color: var(--nf-text, #1a1e24);
+}
+
+.aurora.is-rounded { --aurora-radius: 14px; }
+
+.aurora-shell { width: 100%; max-width: 70rem; margin: 0 auto; padding: 0 1.5rem; }
+
+.aurora-header {
+    background: var(--nf-surface, #fff);
+    border-bottom: 3px solid var(--aurora-accent);
+}
+
+.aurora-header-inner { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; padding-top: 1rem; padding-bottom: 1rem; }
+
+.aurora-brand { display: flex; gap: 0.75rem; align-items: center; color: inherit; text-decoration: none; }
+.aurora-brand strong { display: block; font-size: 1.2rem; letter-spacing: 0.01em; }
+.aurora-brand small { display: block; color: var(--nf-muted, #6b7380); }
+
+.aurora-mark {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: conic-gradient(from 200deg, var(--aurora-accent), color-mix(in srgb, var(--aurora-accent) 30%, #a855f7), var(--aurora-accent));
+}
+
+.aurora-nav { margin-left: auto; display: flex; gap: 0.25rem; flex-wrap: wrap; }
+.aurora-nav a { padding: 0.4rem 0.75rem; border-radius: 999px; color: inherit; text-decoration: none; }
+.aurora-nav a:hover, .aurora-nav a.active { background: color-mix(in srgb, var(--aurora-accent) 14%, transparent); color: var(--aurora-accent); }
+
+.aurora-hero {
+    padding: 3rem 0;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--aurora-accent) 22%, var(--nf-surface, #fff)), var(--nf-surface, #fff));
+    border-bottom: 1px solid var(--nf-border, #e2e5ea);
+}
+
+.aurora-hero h1 { margin: 0 0 0.5rem; font-size: 2.4rem; }
+.aurora-hero p { margin: 0; max-width: 40rem; color: var(--nf-muted, #6b7380); font-size: 1.1rem; }
+
+.aurora-body { flex: 1; padding-top: 2rem; padding-bottom: 3rem; }
+
+.aurora-columns { display: grid; grid-template-columns: minmax(0, 1fr) 17rem; gap: 2rem; }
+
+.aurora-main { min-width: 0; }
+.aurora-main a { color: var(--aurora-accent); }
+
+.aurora-card {
+    padding: 1.1rem 1.25rem;
+    background: var(--nf-surface, #fff);
+    border: 1px solid var(--nf-border, #e2e5ea);
+    border-radius: var(--aurora-radius);
+}
+
+.aurora-sidebar h2 { margin: 0 0 0.5rem; font-size: 1rem; color: var(--aurora-accent); }
+.aurora-sidebar p { margin: 0 0 0.75rem; color: var(--nf-muted, #6b7380); }
+.aurora-sidebar p:last-child { margin-bottom: 0; }
+
+.aurora-footer { padding: 1.5rem 0; background: var(--nf-surface, #fff); border-top: 1px solid var(--nf-border, #e2e5ea); color: var(--nf-muted, #6b7380); font-size: 0.9rem; }
+
+@media (max-width: 52rem) {
+    .aurora-columns { grid-template-columns: minmax(0, 1fr); }
+}

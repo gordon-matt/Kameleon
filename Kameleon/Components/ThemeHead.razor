@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="_content/Kameleon/kameleon.css" />
+@if (context?.Theme is { } theme)
+{
+    @foreach (string url in theme.StylesheetUrls)
+    {
+        <link rel="stylesheet" href="@url" />
+    }
+    @if (variables is not null)
+    {
+        <style>@variables</style>
+    }
+    @foreach (string url in theme.ScriptUrls)
+    {
+        <script src="@url" defer></script>
+    }
+}

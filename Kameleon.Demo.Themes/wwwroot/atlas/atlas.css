@@ -1,0 +1,83 @@
+/* Atlas: a fixed navigation rail and dense content. Surfaces follow the host's colour scheme.
+   The accent is declared on :root so that the accent setting, which ThemeHead writes after this file, wins. */
+
+:root { --atlas-accent: #c2410c; }
+
+.atlas {
+    --atlas-gap: 1.5rem;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 15rem minmax(0, 1fr);
+    background: var(--nf-bg, #f6f7f9);
+    color: var(--nf-text, #1a1e24);
+    font-size: 0.95rem;
+}
+
+.atlas.is-compact { --atlas-gap: 0.85rem; font-size: 0.875rem; }
+
+.atlas-rail {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.25rem 1rem;
+    background: color-mix(in srgb, var(--atlas-accent) 8%, var(--nf-surface, #fff));
+    border-right: 1px solid var(--nf-border, #e2e5ea);
+}
+
+.atlas-brand { display: flex; gap: 0.6rem; align-items: center; color: inherit; font-weight: 700; text-decoration: none; text-transform: uppercase; letter-spacing: 0.08em; }
+.atlas-mark { color: var(--atlas-accent); font-size: 1.3rem; }
+
+.atlas-nav { display: flex; flex-direction: column; gap: 0.15rem; }
+.atlas-nav a { padding: 0.5rem 0.75rem; border-left: 3px solid transparent; color: inherit; text-decoration: none; }
+.atlas-nav a:hover { background: var(--nf-surface, #fff); }
+.atlas-nav a.active { border-left-color: var(--atlas-accent); background: var(--nf-surface, #fff); color: var(--atlas-accent); font-weight: 600; }
+
+.atlas-rail-footer { margin-top: auto; color: var(--nf-muted, #6b7380); font-size: 0.8rem; }
+
+.atlas-page { min-width: 0; display: flex; flex-direction: column; }
+
+.atlas-topbar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem var(--atlas-gap);
+    background: var(--nf-surface, #fff);
+    border-bottom: 1px solid var(--nf-border, #e2e5ea);
+    color: var(--nf-muted, #6b7380);
+    font-size: 0.85rem;
+}
+
+.atlas-hero { padding: var(--atlas-gap); border-bottom: 1px solid var(--nf-border, #e2e5ea); background: var(--nf-surface, #fff); }
+.atlas-hero h1 { margin: 0 0 0.25rem; font-size: 1.6rem; }
+.atlas-hero p { margin: 0; color: var(--nf-muted, #6b7380); }
+
+.atlas-content { display: grid; gap: var(--atlas-gap); padding: var(--atlas-gap); }
+.atlas-content.has-aside { grid-template-columns: minmax(0, 1fr) 16rem; }
+
+.atlas-main a { color: var(--atlas-accent); }
+
+.atlas-aside { align-self: start; padding: 1rem; background: var(--nf-surface, #fff); border: 1px solid var(--nf-border, #e2e5ea); }
+.atlas-aside h2 { margin: 0 0 0.5rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--atlas-accent); }
+
+.atlas-article {
+    display: flex;
+    gap: 1rem;
+    padding: var(--atlas-gap);
+    margin-bottom: var(--atlas-gap);
+    background: var(--nf-surface, #fff);
+    border: 1px solid var(--nf-border, #e2e5ea);
+}
+
+.atlas-article-bar { flex: none; width: 4px; background: var(--atlas-accent); }
+.atlas-article h3 { margin: 0 0 0.35rem; font-size: 1.05rem; }
+.atlas-article p { margin: 0 0 0.5rem; color: var(--nf-muted, #6b7380); }
+.atlas-article-meta { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--atlas-accent); }
+
+@media (max-width: 52rem) {
+    .atlas { grid-template-columns: minmax(0, 1fr); }
+    .atlas-rail { position: static; height: auto; }
+    .atlas-content.has-aside { grid-template-columns: minmax(0, 1fr); }
+}

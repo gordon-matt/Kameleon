@@ -1,0 +1,27 @@
+@inherits ThemeLayoutBase
+
+<div class="km-default">
+    <header class="km-default-header">
+        <ThemeRegion Name="@ThemeRegions.Header" />
+        <nav class="km-default-nav" aria-label="Primary">
+            <ThemeRegion Name="@ThemeRegions.PrimaryNavigation" />
+        </nav>
+    </header>
+    <ThemeRegion Name="@ThemeRegions.Breadcrumbs" />
+    <ThemeRegion Name="@ThemeRegions.Hero" />
+    <div class="km-default-body @(HasRegion(ThemeRegions.Sidebar) ? "has-sidebar" : null)">
+        <main class="km-default-main">
+            @Body
+        </main>
+        @if (HasRegion(ThemeRegions.Sidebar))
+        {
+            <aside class="km-default-sidebar">
+                <ThemeRegion Name="@ThemeRegions.Sidebar" />
+            </aside>
+        }
+    </div>
+    <footer class="km-default-footer">
+        <ThemeRegion Name="@ThemeRegions.Footer" />
+    </footer>
+    <ThemeRegion Name="@ThemeRegions.Overlay" />
+</div>

@@ -1,0 +1,22 @@
+<article class="atlas-article">
+    <span class="atlas-article-bar" aria-hidden="true"></span>
+    <div>
+        <h3>@Title</h3>
+        <p>@Summary</p>
+        @if (!string.IsNullOrEmpty(Author))
+        {
+            <span class="atlas-article-meta">@Author</span>
+        }
+    </div>
+</article>
+
+@code {
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public string? Summary { get; set; }
+
+    [Parameter]
+    public string? Author { get; set; }
+}

@@ -1,0 +1,16 @@
+global using System.Text.RegularExpressions;
+global using Ardalis.Result;
+global using Extenso.Data.Entity;
+global using Heroicsoft.NetForge.Abstractions.Auth;
+global using Kameleon.Administration;
+global using Kameleon.Catalog;
+global using Kameleon.Data;
+global using Kameleon.Data.Entities;
+global using Kameleon.Models;
+global using Kameleon.Resolution;
+global using Kameleon.Security;
+global using Kameleon.Settings;
+global using Kameleon.Tenancy;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;

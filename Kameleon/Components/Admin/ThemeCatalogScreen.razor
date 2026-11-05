@@ -1,0 +1,117 @@
+<PageHeader Title="@Title" Icon="palette" Description="Every installed theme. Turn a theme off for everyone, or make it available only to the sites you choose.">
+    <Actions>
+        <button type="button" class="nf-button" disabled="@busy" @onclick="ReloadAsync"><Icon Name="refresh" Size="16" /> Reload themes</button>
+    </Actions>
+</PageHeader>
+
+@if (data is null && loadError is null)
+{
+    <p class="nf-muted">Loading themes…</p>
+}
+else if (loadError is not null)
+{
+    <EmptyState Icon="alert" Title="The themes could not be loaded" Description="@loadError" />
+}
+else
+{
+    @if (data!.Errors.Count > 0)
+    {
+        <div class="km-callout is-warning" role="status">
+            <Icon Name="warning" Size="18" />
+            <div>
+                <strong>@(data.Errors.Count == 1 ? "One theme was not loaded" : $"{data.Errors.Count} themes were not loaded")</strong>
+                <ul class="km-errors">
+                    @foreach (var error in data.Errors)
+                    {
+                        <li><span class="nf-code">@(error.ThemeId ?? error.Source)</span> @error.Message</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+
+    @if (data.Themes.Count == 0)
+    {
+        <EmptyState Icon="palette" Title="No themes installed" Description="Register a compiled theme or add a folder with a theme.json to the themes folder." />
+    }
+    else
+    {
+        <Table>
+            <thead>
+                <tr>
+                    <th>Theme</th>
+                    <th>Kind</th>
+                    <th>Available to</th>
+                    <th>Enabled</th>
+                    <th class="nf-cell-actions"><span class="nf-sr-only">Actions</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in data.Themes)
+                {
+                    <tr @key="item.Theme.Id">
+                        <td>
+                            <div class="nf-row-title km-row-title">
+                                @item.Theme.Name
+                                @if (item.IsFallback)
+                                {
+                                    <span class="nf-badge nf-badge-info">Fallback</span>
+                                }
+                            </div>
+                            <div class="nf-row-subtitle nf-muted nf-small">@item.Theme.Id · @item.Theme.Version · @item.Source</div>
+                        </td>
+                        <td>@(item.Theme.Kind == ThemeKind.Compiled ? "Compiled" : "Static")</td>
+                        <td>
+                            <select class="nf-select" aria-label="@($"Who can use {item.Theme.Name}")" disabled="@busy"
+                                    value="@item.Availability" @onchange="args => SetAvailabilityAsync(item, args)">
+                                <option value="@ThemeAvailability.AllTenants">Every site</option>
+                                <option value="@ThemeAvailability.SelectedTenants">Selected sites</option>
+                            </select>
+                        </td>
+                        <td>
+                            <Switch Value="@item.IsEnabled" ValueChanged="enabled => SetEnabledAsync(item, enabled)"
+                                    Disabled="@(busy || item.IsFallback)" Label="@(item.IsEnabled ? "On" : "Off")" />
+                        </td>
+                        <td class="nf-cell-actions">
+                            @if (item.Availability == ThemeAvailability.SelectedTenants && data.CanGrantPerTenant)
+                            {
+                                <div class="nf-row-actions">
+                                    <button type="button" class="nf-button nf-button-sm" disabled="@busy" @onclick="() => OpenGrantsAsync(item)">
+                                        <Icon Name="people" Size="14" /> Sites
+                                    </button>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </Table>
+
+        @if (!data.CanGrantPerTenant && data.Themes.Any(theme => theme.Availability == ThemeAvailability.SelectedTenants))
+        {
+            <p class="nf-hint">Choosing sites needs a list of them: register an <span class="nf-code">IThemeTenantDirectory</span>.</p>
+        }
+    }
+}
+
+<Drawer Title="@($"Sites that can use {granting?.Theme.Name}")" Open="@(granting is not null)" Scrim="true" Width="420px" OnClose="CloseGrants">
+    @if (grants is null)
+    {
+        <p class="nf-muted">Loading sites…</p>
+    }
+    else if (grants.Count == 0)
+    {
+        <EmptyState Icon="people" Title="No sites" Description="There are no sites to grant this theme to." />
+    }
+    else
+    {
+        <ul class="km-grants">
+            @foreach (var grant in grants)
+            {
+                <li @key="grant.TenantId">
+                    <Switch Value="@grant.IsGranted" ValueChanged="granted => SetGrantAsync(grant, granted)" Disabled="@busy" Label="@grant.TenantName" />
+                </li>
+            }
+        </ul>
+    }
+</Drawer>

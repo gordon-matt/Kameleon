@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<Description>The contracts and components a Kameleon theme is built with. A theme package references only this.</Description>
+		<RootNamespace>Kameleon</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="Kameleon.Tests" />
+	</ItemGroup>
+
+</Project>

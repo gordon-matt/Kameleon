@@ -1,0 +1,13 @@
+@inherits LayoutComponentBase
+@implements IDisposable
+
+@if (context is not null)
+{
+    <CascadingValue Value="context">
+        <CascadingValue Value="regions" IsFixed="true">
+            <LayoutView Layout="@LayoutType">
+                @Body
+            </LayoutView>
+        </CascadingValue>
+    </CascadingValue>
+}

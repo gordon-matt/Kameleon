@@ -1,0 +1,12 @@
+global using Ardalis.Result;
+global using Kameleon.Administration;
+global using Kameleon.Catalog;
+global using Kameleon.Components;
+global using Kameleon.Infrastructure;
+global using Kameleon.Models;
+global using Kameleon.Resolution;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.AspNetCore.Components;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Options;

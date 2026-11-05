@@ -1,0 +1,10 @@
+@page "/admin/themes"
+@attribute [Authorize(Policy = KameleonPolicies.View)]
+@layout KameleonAdminLayout
+
+<PageTitle>Themes</PageTitle>
+
+@if (isDefaultPath)
+{
+    <ThemeSettingsScreen />
+}

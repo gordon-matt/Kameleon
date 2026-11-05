@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+    <File Path="README.md" />
+  </Folder>
+  <Project Path="Kameleon.Abstractions/Kameleon.Abstractions.csproj" />
+  <Project Path="Kameleon.Data/Kameleon.Data.csproj" />
+  <Project Path="Kameleon.Data.MySql/Kameleon.Data.MySql.csproj" />
+  <Project Path="Kameleon.Data.Npgsql/Kameleon.Data.Npgsql.csproj" />
+  <Project Path="Kameleon.Data.Sql/Kameleon.Data.Sql.csproj" />
+  <Project Path="Kameleon.Data.Sqlite/Kameleon.Data.Sqlite.csproj" />
+  <Project Path="Kameleon.Services/Kameleon.Services.csproj" />
+  <Project Path="Kameleon/Kameleon.csproj" />
+  <Project Path="Kameleon.Demo.Themes/Kameleon.Demo.Themes.csproj" />
+  <Project Path="Kameleon.Demo/Kameleon.Demo.csproj" />
+  <Project Path="Kameleon.Tests/Kameleon.Tests.csproj" />
+</Solution>

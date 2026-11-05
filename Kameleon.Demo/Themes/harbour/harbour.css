@@ -1,0 +1,25 @@
+/* Harbour restyles the demo site's own layout, so its selectors are the site's classes. */
+
+:root { --harbour-accent: #1d4ed8; }
+
+.demo-host { background: color-mix(in srgb, var(--harbour-accent) 5%, var(--nf-bg, #f6f7f9)); }
+
+.demo-host-header {
+    background: color-mix(in srgb, var(--harbour-accent) 80%, #0b1220);
+    color: #f8fafc;
+    border-bottom: 0;
+}
+
+.demo-host-header a { color: inherit; }
+.demo-host-nav a.active { background: rgb(255 255 255 / 0.16); }
+
+.demo-host-hero {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--harbour-accent) 80%, #0b1220), color-mix(in srgb, var(--harbour-accent) 55%, #0b1220));
+    color: #f8fafc;
+}
+
+.demo-host-hero p { color: rgb(248 250 252 / 0.8); }
+
+.demo-host main a { color: var(--harbour-accent); }
+
+.demo-host-sidebar, .demo-article { border-top: 3px solid var(--harbour-accent); }

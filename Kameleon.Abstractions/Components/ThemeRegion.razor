@@ -1,0 +1,15 @@
+@if (Content is { } content)
+{
+    @if (Template is not null)
+    {
+        @Template(content)
+    }
+    else
+    {
+        @content
+    }
+}
+else
+{
+    @ChildContent
+}

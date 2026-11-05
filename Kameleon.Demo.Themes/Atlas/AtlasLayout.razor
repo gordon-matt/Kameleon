@@ -1,0 +1,38 @@
+@inherits ThemeLayoutBase
+
+<div class="atlas is-@(Setting("density") ?? "comfortable")">
+    <aside class="atlas-rail">
+        <a class="atlas-brand" href="">
+            <span class="atlas-mark" aria-hidden="true">◆</span>
+            <ThemeRegion Name="@ThemeRegions.Header">Kameleon</ThemeRegion>
+        </a>
+        <nav class="atlas-nav" aria-label="Primary">
+            <ThemeRegion Name="@ThemeRegions.PrimaryNavigation" />
+        </nav>
+        <div class="atlas-rail-footer">
+            <ThemeRegion Name="@ThemeRegions.Footer">Atlas theme</ThemeRegion>
+        </div>
+    </aside>
+    <div class="atlas-page">
+        <div class="atlas-topbar">
+            <ThemeRegion Name="@ThemeRegions.Breadcrumbs">
+                <span class="atlas-crumb">Home</span>
+            </ThemeRegion>
+        </div>
+        <ThemeRegion Name="@ThemeRegions.Hero">
+            <Template Context="content">
+                <section class="atlas-hero">@content</section>
+            </Template>
+        </ThemeRegion>
+        <div class="atlas-content @(HasRegion(ThemeRegions.Sidebar) ? "has-aside" : null)">
+            <main class="atlas-main">@Body</main>
+            @if (HasRegion(ThemeRegions.Sidebar))
+            {
+                <aside class="atlas-aside">
+                    <ThemeRegion Name="@ThemeRegions.Sidebar" />
+                </aside>
+            }
+        </div>
+    </div>
+    <ThemeRegion Name="@ThemeRegions.Overlay" />
+</div>

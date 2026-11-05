@@ -1,0 +1,35 @@
+@inherits ThemeLayoutBase
+
+<div class="aurora @(Theme.IsSettingOn("rounded") ? "is-rounded" : null)">
+    <AuroraHeader />
+    <ThemeRegion Name="@ThemeRegions.Hero">
+        <Template Context="content">
+            <section class="aurora-hero"><div class="aurora-shell">@content</div></section>
+        </Template>
+    </ThemeRegion>
+    <div class="aurora-shell aurora-body">
+        <ThemeRegion Name="@ThemeRegions.Breadcrumbs" />
+        <div class="aurora-columns">
+            <main class="aurora-main">@Body</main>
+            <aside class="aurora-sidebar">
+                <ThemeRegion Name="@ThemeRegions.Sidebar">
+                    <Template Context="content">
+                        <div class="aurora-card">@content</div>
+                    </Template>
+                    <ChildContent>
+                    <div class="aurora-card">
+                        <h2>About</h2>
+                        <p>The Aurora theme shows a page's sidebar content here, or this note when there is none.</p>
+                    </div>
+                    </ChildContent>
+                </ThemeRegion>
+            </aside>
+        </div>
+    </div>
+    <footer class="aurora-footer">
+        <div class="aurora-shell">
+            <ThemeRegion Name="@ThemeRegions.Footer">Aurora theme</ThemeRegion>
+        </div>
+    </footer>
+    <ThemeRegion Name="@ThemeRegions.Overlay" />
+</div>

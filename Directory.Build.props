@@ -1,0 +1,24 @@
+<Project>
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+		<Version>1.0.0</Version>
+		<Authors>Matt Gordon</Authors>
+		<Company>Matt Gordon</Company>
+		<Product>Kameleon</Product>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageTags>themes;theme-engine;blazor;razor-class-library;multi-tenant</PackageTags>
+		<PackageIcon>Icon.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/gordon-matt/Kameleon</RepositoryUrl>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(IsPackable)' != 'false'">
+		<None Include="$(MSBuildThisFileDirectory)_Misc\Icon.png" Pack="true" PackagePath="\" Visible="false" />
+		<None Include="$(MSBuildThisFileDirectory)README.md" Pack="true" PackagePath="\" Visible="false" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,13 @@
+@if (choices is { CanChoose: true })
+{
+    <label class="km-picker @Class">
+        <span class="km-picker-label">@Label</span>
+        <select class="nf-select" value="@(choices.SelectedThemeId ?? string.Empty)" disabled="@saving" @onchange="OnChangeAsync">
+            <option value="">@DefaultOptionText</option>
+            @foreach (var theme in choices.Themes)
+            {
+                <option value="@theme.Id">@theme.Name</option>
+            }
+        </select>
+    </label>
+}
