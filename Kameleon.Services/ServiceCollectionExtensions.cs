@@ -4,6 +4,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Kameleon;
 
+/// <summary>
+/// Provides extension methods for kameleon service collections.
+/// </summary>
 public static class KameleonServiceCollectionExtensions
 {
     extension(IServiceCollection services)

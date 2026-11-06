@@ -16,6 +16,9 @@ public partial class ThemeSettingsScreen
     private Dictionary<string, string?> values = new(StringComparer.Ordinal);
     private IReadOnlyList<ValidationError> errors = [];
 
+    /// <summary>
+    /// Gets or sets the title.
+    /// </summary>
     [Parameter]
     public string Title { get; set; } = "Themes";
 
@@ -28,6 +31,7 @@ public partial class ThemeSettingsScreen
     private string? FallbackName =>
         data?.FallbackThemeId is { } id ? data.Themes.FirstOrDefault(theme => theme.Theme.Id == id)?.Theme.Name ?? id : null;
 
+    /// <inheritdoc/>
     protected override Task OnInitializedAsync() => LoadAsync();
 
     private async Task LoadAsync()

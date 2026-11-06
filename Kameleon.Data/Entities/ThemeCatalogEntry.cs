@@ -6,20 +6,39 @@ namespace Kameleon.Data.Entities;
 /// </summary>
 public class ThemeCatalogEntry : BaseEntity<int>
 {
+    /// <summary>
+    /// Gets or sets the theme identifier.
+    /// </summary>
     public string ThemeId { get; set; } = string.Empty;
 
     /// <summary>False takes the theme away from every tenant without uninstalling it.</summary>
     public bool IsEnabled { get; set; } = true;
 
+    /// <summary>
+    /// Gets or sets the availability.
+    /// </summary>
     public ThemeAvailability Availability { get; set; }
 
+    /// <summary>
+    /// Gets or sets the updated at utc.
+    /// </summary>
     public DateTime UpdatedAtUtc { get; set; }
 
+    /// <summary>
+    /// Gets or sets the updated by.
+    /// </summary>
     public string? UpdatedBy { get; set; }
 }
 
+/// <summary>
+/// Represents the theme catalog entry map.
+/// </summary>
 public sealed class ThemeCatalogEntryMap : IEntityTypeConfiguration<ThemeCatalogEntry>
 {
+    /// <summary>
+    /// Configures the value.
+    /// </summary>
+    /// <param name="builder">The builder.</param>
     public void Configure(EntityTypeBuilder<ThemeCatalogEntry> builder)
     {
         builder.ToTable(Constants.Tables.CatalogEntries);

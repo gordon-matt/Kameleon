@@ -6,11 +6,23 @@ namespace Kameleon.Administration;
 /// </summary>
 public interface IThemeCatalogAdminService
 {
+    /// <summary>
+    /// Gets the value.
+    /// </summary>
+    /// <param name="cancellationToken">A token that can be used to cancel the operation.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result is the outcome for the theme catalog.</returns>
     Task<Result<ThemeCatalogDto>> GetAsync(CancellationToken cancellationToken = default);
 
     /// <summary>Disabling takes the theme away from every tenant at once. The fallback theme cannot be disabled.</summary>
     Task<Result> SetEnabledAsync(string themeId, bool enabled, CancellationToken cancellationToken = default);
 
+    /// <summary>
+    /// Sets the availability.
+    /// </summary>
+    /// <param name="themeId">The theme identifier.</param>
+    /// <param name="availability">The availability.</param>
+    /// <param name="cancellationToken">A token that can be used to cancel the operation.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the result.</returns>
     Task<Result> SetAvailabilityAsync(string themeId, ThemeAvailability availability, CancellationToken cancellationToken = default);
 
     /// <summary>Every tenant from the host's <see cref="IThemeTenantDirectory"/> and whether it was granted the theme.</summary>

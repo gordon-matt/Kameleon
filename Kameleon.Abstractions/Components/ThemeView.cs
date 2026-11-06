@@ -28,6 +28,7 @@ public sealed class ThemeView : ComponentBase
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
+    /// <inheritdoc/>
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         var type = Theme?.Theme?.Views.GetValueOrDefault(Name) ?? Fallback;

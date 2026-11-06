@@ -5,10 +5,21 @@ namespace Kameleon;
 /// <summary>Puts the theme screens on the host menu. The host places it with <c>AddKameleon()</c>.</summary>
 public sealed class KameleonMenuContributor(IOptions<KameleonOptions> options) : INetForgeMenuContributor
 {
+    /// <summary>
+    /// Gets the name.
+    /// </summary>
     public string Name => "Kameleon";
 
+    /// <summary>
+    /// Gets the default menu.
+    /// </summary>
     public string DefaultMenu => "Appearance";
 
+    /// <summary>
+    /// Performs the contribute operation.
+    /// </summary>
+    /// <param name="group">The group.</param>
+    /// <param name="configure">The configure.</param>
     public void Contribute(INetForgeMenuGroupBuilder group, Action<NetForgeMenuItemOptions>? configure) => group.AddCustom(item =>
     {
         var settings = options.Value;
@@ -42,6 +53,11 @@ public static class KameleonMenuExtensions
 {
     extension(INetForgeMenuGroupBuilder menu)
     {
+        /// <summary>
+        /// Adds the kameleon.
+        /// </summary>
+        /// <param name="configure">The configure.</param>
+        /// <returns>The kameleon.</returns>
         public INetForgeMenuGroupBuilder AddKameleon(Action<NetForgeMenuItemOptions>? configure = null) =>
             menu.AddContributor("Kameleon", configure);
     }

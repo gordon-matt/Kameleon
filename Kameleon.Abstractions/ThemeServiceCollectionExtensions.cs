@@ -2,6 +2,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Kameleon;
 
+/// <summary>
+/// Provides extension methods for theme service collections.
+/// </summary>
 public static class ThemeServiceCollectionExtensions
 {
     extension(IServiceCollection services)

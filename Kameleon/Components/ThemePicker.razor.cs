@@ -11,9 +11,15 @@ public partial class ThemePicker
     private UserThemeChoicesDto? choices;
     private bool saving;
 
+    /// <summary>
+    /// Gets or sets the label.
+    /// </summary>
     [Parameter]
     public string Label { get; set; } = "Theme";
 
+    /// <summary>
+    /// Gets or sets the class.
+    /// </summary>
     [Parameter]
     public string? Class { get; set; }
 
@@ -35,6 +41,7 @@ public partial class ThemePicker
         }
     }
 
+    /// <inheritdoc/>
     protected override async Task OnInitializedAsync()
     {
         var found = await Themes.GetChoicesAsync();

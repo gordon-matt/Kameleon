@@ -7,8 +7,14 @@ namespace Kameleon.Data.Entities;
 /// </summary>
 public class TenantTheme : BaseEntity<int>
 {
+    /// <summary>
+    /// Gets or sets the tenant identifier.
+    /// </summary>
     public string TenantId { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Gets or sets the theme identifier.
+    /// </summary>
     public string ThemeId { get; set; } = string.Empty;
 
     /// <summary>Only read when the theme's availability is <see cref="ThemeAvailability.SelectedTenants"/>.</summary>
@@ -20,13 +26,26 @@ public class TenantTheme : BaseEntity<int>
     /// <summary>The tenant's setting values as a JSON object of strings. Validated again whenever it is read.</summary>
     public string? Configuration { get; set; }
 
+    /// <summary>
+    /// Gets or sets the updated at utc.
+    /// </summary>
     public DateTime UpdatedAtUtc { get; set; }
 
+    /// <summary>
+    /// Gets or sets the updated by.
+    /// </summary>
     public string? UpdatedBy { get; set; }
 }
 
+/// <summary>
+/// Represents the tenant theme map.
+/// </summary>
 public sealed class TenantThemeMap : IEntityTypeConfiguration<TenantTheme>
 {
+    /// <summary>
+    /// Configures the value.
+    /// </summary>
+    /// <param name="builder">The builder.</param>
     public void Configure(EntityTypeBuilder<TenantTheme> builder)
     {
         builder.ToTable(Constants.Tables.TenantThemes);

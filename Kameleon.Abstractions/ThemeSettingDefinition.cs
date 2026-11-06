@@ -9,13 +9,22 @@ public sealed record ThemeSettingDefinition
     /// <summary>Lowercase letters, digits and single hyphens. Read it back with <see cref="ThemeContext.Setting"/>.</summary>
     public required string Key { get; init; }
 
+    /// <summary>
+    /// Gets or sets the name.
+    /// </summary>
     public required string Name { get; init; }
 
+    /// <summary>
+    /// Gets or sets the kind.
+    /// </summary>
     public ThemeSettingKind Kind { get; init; } = ThemeSettingKind.Text;
 
     /// <summary>Used until an administrator saves a value. Must itself be valid for <see cref="Kind"/>.</summary>
     public string? DefaultValue { get; init; }
 
+    /// <summary>
+    /// Gets or sets the description.
+    /// </summary>
     public string? Description { get; init; }
 
     /// <summary>The allowed values of a <see cref="ThemeSettingKind.Choice"/> setting.</summary>
@@ -32,6 +41,9 @@ public sealed record ThemeSettingDefinition
     public int MaxLength { get; init; } = 256;
 }
 
+/// <summary>
+/// Specifies the theme setting kind.
+/// </summary>
 public enum ThemeSettingKind
 {
     /// <summary>Plain text. Razor encodes it when rendered.</summary>

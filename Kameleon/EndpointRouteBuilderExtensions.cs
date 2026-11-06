@@ -4,6 +4,9 @@ using Microsoft.Net.Http.Headers;
 
 namespace Kameleon;
 
+/// <summary>
+/// Provides extension methods for endpoint route builders.
+/// </summary>
 public static class EndpointRouteBuilderExtensions
 {
     private static readonly FileExtensionContentTypeProvider ContentTypes = new();

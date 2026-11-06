@@ -6,10 +6,19 @@ namespace Kameleon;
 /// </summary>
 public sealed class KameleonOptions
 {
+    /// <summary>
+    /// The section name constant.
+    /// </summary>
     public const string SectionName = "Kameleon";
 
+    /// <summary>
+    /// The default asset request path constant.
+    /// </summary>
     public const string DefaultAssetRequestPath = "/themes";
 
+    /// <summary>
+    /// The default admin path constant.
+    /// </summary>
     public const string DefaultAdminPath = "/admin/themes";
 
     /// <summary>
@@ -99,6 +108,12 @@ public sealed class KameleonOptions
     /// </summary>
     public IDictionary<string, IList<Type>> RegionContent { get; } = new Dictionary<string, IList<Type>>(StringComparer.Ordinal);
 
+    /// <summary>
+    /// Adds the region content.
+    /// </summary>
+    /// <typeparam name="TComponent">The type of the component.</typeparam>
+    /// <param name="region">The region.</param>
+    /// <returns>The region content.</returns>
     public KameleonOptions AddRegionContent<TComponent>(string region)
         where TComponent : Microsoft.AspNetCore.Components.IComponent
     {

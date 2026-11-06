@@ -19,8 +19,12 @@ public partial class KameleonLayout
     private Type LayoutType =>
         context?.Layout?.ComponentType ?? Options.Value.HostLayout ?? typeof(KameleonDefaultLayout);
 
+    /// <summary>
+    /// Releases the resources used by this instance.
+    /// </summary>
     public void Dispose() => State.Changed -= OnThemeChanged;
 
+    /// <inheritdoc/>
     protected override async Task OnInitializedAsync()
     {
         regions = new ThemeRegionRegistry(Options.Value.RegionContent.ToDictionary(

@@ -2,6 +2,9 @@ using System.Text;
 
 namespace Kameleon.Resolution;
 
+/// <summary>
+/// Provides theme styles.
+/// </summary>
 public static class ThemeStyles
 {
     /// <summary>

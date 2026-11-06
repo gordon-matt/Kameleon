@@ -13,10 +13,17 @@ public sealed class RegionContent : ComponentBase, IDisposable
     [Parameter, EditorRequired]
     public string Name { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Gets or sets the child content.
+    /// </summary>
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
+    /// <summary>
+    /// Releases the resources used by this instance.
+    /// </summary>
     public void Dispose() => Registry?.Remove(this);
 
+    /// <inheritdoc/>
     protected override void OnParametersSet() => Registry?.Set(this, Name, ChildContent);
 }

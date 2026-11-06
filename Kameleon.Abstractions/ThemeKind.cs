@@ -1,5 +1,8 @@
 namespace Kameleon;
 
+/// <summary>
+/// Specifies the theme kind.
+/// </summary>
 public enum ThemeKind
 {
     /// <summary>An <see cref="ITheme"/> in an assembly: its own layouts, views and assets.</summary>

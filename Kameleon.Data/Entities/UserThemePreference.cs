@@ -6,17 +6,36 @@ namespace Kameleon.Data.Entities;
 /// </summary>
 public class UserThemePreference : BaseEntity<int>
 {
+    /// <summary>
+    /// Gets or sets the tenant identifier.
+    /// </summary>
     public string TenantId { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Gets or sets the user identifier.
+    /// </summary>
     public string UserId { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Gets or sets the theme identifier.
+    /// </summary>
     public string ThemeId { get; set; } = string.Empty;
 
+    /// <summary>
+    /// Gets or sets the updated at utc.
+    /// </summary>
     public DateTime UpdatedAtUtc { get; set; }
 }
 
+/// <summary>
+/// Represents the user theme preference map.
+/// </summary>
 public sealed class UserThemePreferenceMap : IEntityTypeConfiguration<UserThemePreference>
 {
+    /// <summary>
+    /// Configures the value.
+    /// </summary>
+    /// <param name="builder">The builder.</param>
     public void Configure(EntityTypeBuilder<UserThemePreference> builder)
     {
         builder.ToTable(Constants.Tables.UserPreferences);

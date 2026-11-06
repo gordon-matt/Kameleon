@@ -10,5 +10,8 @@ public sealed class UtcDateTimeConverter() : ValueConverter<DateTime, DateTime>(
     value => value.Kind == DateTimeKind.Utc ? value : value.ToUniversalTime(),
     value => DateTime.SpecifyKind(value, DateTimeKind.Utc))
 {
+    /// <summary>
+    /// Gets the instance.
+    /// </summary>
     public static UtcDateTimeConverter Instance { get; } = new();
 }

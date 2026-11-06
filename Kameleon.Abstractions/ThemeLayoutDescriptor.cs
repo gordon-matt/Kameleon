@@ -9,5 +9,8 @@ namespace Kameleon;
 /// </param>
 public sealed record ThemeLayoutDescriptor(string Id, string Name, Type ComponentType)
 {
+    /// <summary>
+    /// Gets or sets the description.
+    /// </summary>
     public string? Description { get; init; }
 }

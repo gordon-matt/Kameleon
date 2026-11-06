@@ -35,6 +35,9 @@ public abstract class ThemeLayoutBase : LayoutComponentBase, IDisposable
         return base.SetParametersAsync(ParameterView.Empty);
     }
 
+    /// <summary>
+    /// Releases the resources used by this instance.
+    /// </summary>
     public void Dispose()
     {
         Unsubscribe();
@@ -48,8 +51,17 @@ public abstract class ThemeLayoutBase : LayoutComponentBase, IDisposable
     /// <inheritdoc cref="ThemeInfo.Asset"/>
     protected string Asset(string path) => Theme.Asset(path);
 
+    /// <summary>
+    /// Gets the setting.
+    /// </summary>
+    /// <param name="key">The key.</param>
+    /// <returns>The setting.</returns>
     protected string? Setting(string key) => Theme.Setting(key);
 
+    /// <summary>
+    /// Releases the resources used by this instance.
+    /// </summary>
+    /// <param name="disposing">The disposing.</param>
     protected virtual void Dispose(bool disposing)
     {
     }

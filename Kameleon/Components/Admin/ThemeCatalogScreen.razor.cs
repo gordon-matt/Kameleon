@@ -15,6 +15,9 @@ public partial class ThemeCatalogScreen
     private CatalogThemeDto? granting;
     private IReadOnlyList<ThemeTenantGrantDto>? grants;
 
+    /// <summary>
+    /// Gets or sets the title.
+    /// </summary>
     [Parameter]
     public string Title { get; set; } = "Theme catalog";
 
@@ -24,6 +27,7 @@ public partial class ThemeCatalogScreen
     [Inject]
     private ToastService Toasts { get; set; } = default!;
 
+    /// <inheritdoc/>
     protected override Task OnInitializedAsync() => LoadAsync();
 
     private async Task LoadAsync()

@@ -7,6 +7,9 @@ namespace Kameleon;
 /// </summary>
 public interface ITheme
 {
+    /// <summary>
+    /// Gets the descriptor.
+    /// </summary>
     ThemeDescriptor Descriptor { get; }
 
     /// <summary>

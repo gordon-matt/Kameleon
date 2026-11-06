@@ -6,16 +6,34 @@ namespace Kameleon;
 /// </summary>
 public sealed record ThemeInfo
 {
+    /// <summary>
+    /// Gets or sets the identifier.
+    /// </summary>
     public required string Id { get; init; }
 
+    /// <summary>
+    /// Gets or sets the name.
+    /// </summary>
     public required string Name { get; init; }
 
+    /// <summary>
+    /// Gets or sets the version.
+    /// </summary>
     public required string Version { get; init; }
 
+    /// <summary>
+    /// Gets or sets the description.
+    /// </summary>
     public string? Description { get; init; }
 
+    /// <summary>
+    /// Gets or sets the author.
+    /// </summary>
     public string? Author { get; init; }
 
+    /// <summary>
+    /// Gets or sets the kind.
+    /// </summary>
     public required ThemeKind Kind { get; init; }
 
     /// <summary>
@@ -31,16 +49,34 @@ public sealed record ThemeInfo
     /// <summary>Null for a static theme.</summary>
     public ThemeLayoutInfo? DefaultLayout { get; init; }
 
+    /// <summary>
+    /// Gets or sets the stylesheet urls.
+    /// </summary>
     public IReadOnlyList<string> StylesheetUrls { get; init; } = [];
 
+    /// <summary>
+    /// Gets or sets the script urls.
+    /// </summary>
     public IReadOnlyList<string> ScriptUrls { get; init; } = [];
 
+    /// <summary>
+    /// Gets or sets the preview image URL.
+    /// </summary>
     public string? PreviewImageUrl { get; init; }
 
+    /// <summary>
+    /// Gets or sets the views.
+    /// </summary>
     public IReadOnlyDictionary<string, Type> Views { get; init; } = ReadOnlyDictionary<string, Type>.Empty;
 
+    /// <summary>
+    /// Gets or sets the settings.
+    /// </summary>
     public IReadOnlyList<ThemeSettingDefinition> Settings { get; init; } = [];
 
+    /// <summary>
+    /// Gets or sets a value indicating whether this instance is supports right to left.
+    /// </summary>
     public bool SupportsRightToLeft { get; init; }
 
     /// <summary>The assembly or folder the theme came from, for diagnostics.</summary>
@@ -72,4 +108,11 @@ public sealed record ThemeInfo
             : Layouts.FirstOrDefault(layout => string.Equals(layout.Id, layoutId, StringComparison.Ordinal));
 }
 
+/// <summary>
+/// Represents the theme layout info.
+/// </summary>
+/// <param name="Id">The identifier.</param>
+/// <param name="Name">The name.</param>
+/// <param name="Description">The description.</param>
+/// <param name="ComponentType">The component type.</param>
 public sealed record ThemeLayoutInfo(string Id, string Name, string? Description, Type ComponentType);

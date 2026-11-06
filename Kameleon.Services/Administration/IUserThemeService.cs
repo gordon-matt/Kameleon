@@ -3,6 +3,11 @@ namespace Kameleon.Administration;
 /// <summary>The signed-in user's own theme choice in the current tenant.</summary>
 public interface IUserThemeService
 {
+    /// <summary>
+    /// Gets the choices.
+    /// </summary>
+    /// <param name="cancellationToken">A token that can be used to cancel the operation.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result is the outcome for the user theme choices.</returns>
     Task<Result<UserThemeChoicesDto>> GetChoicesAsync(CancellationToken cancellationToken = default);
 
     /// <summary>

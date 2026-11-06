@@ -15,6 +15,9 @@ public interface IThemeSource
 /// <param name="Errors">Themes the source found but could not read, such as a malformed <c>theme.json</c>.</param>
 public sealed record ThemeSourceResult(IReadOnlyList<ThemeCandidate> Themes, IReadOnlyList<ThemeCatalogError> Errors)
 {
+    /// <summary>
+    /// Gets the empty.
+    /// </summary>
     public static ThemeSourceResult Empty { get; } = new([], []);
 }
 
@@ -24,14 +27,29 @@ public sealed record ThemeCandidate
     /// <summary>The assembly or folder, shown with any error about the theme.</summary>
     public required string Source { get; init; }
 
+    /// <summary>
+    /// Gets or sets the kind.
+    /// </summary>
     public required ThemeKind Kind { get; init; }
 
+    /// <summary>
+    /// Gets or sets the descriptor.
+    /// </summary>
     public required ThemeDescriptor Descriptor { get; init; }
 
+    /// <summary>
+    /// Gets or sets the layouts.
+    /// </summary>
     public IReadOnlyList<ThemeLayoutDescriptor> Layouts { get; init; } = [];
 
+    /// <summary>
+    /// Gets or sets the views.
+    /// </summary>
     public IReadOnlyDictionary<string, Type> Views { get; init; } = ReadOnlyDictionary<string, Type>.Empty;
 
+    /// <summary>
+    /// Gets or sets the settings.
+    /// </summary>
     public IReadOnlyList<ThemeSettingDefinition> Settings { get; init; } = [];
 
     /// <inheritdoc cref="ThemeInfo.AssetBasePath"/>

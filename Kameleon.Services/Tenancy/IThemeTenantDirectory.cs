@@ -6,6 +6,11 @@ namespace Kameleon.Tenancy;
 /// </summary>
 public interface IThemeTenantDirectory
 {
+    /// <summary>
+    /// Lists the value.
+    /// </summary>
+    /// <param name="cancellationToken">A token that can be used to cancel the operation.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the theme tenants.</returns>
     Task<IReadOnlyList<ThemeTenant>> ListAsync(CancellationToken cancellationToken = default);
 }
 

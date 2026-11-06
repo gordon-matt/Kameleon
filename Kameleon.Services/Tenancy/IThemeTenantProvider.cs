@@ -16,5 +16,9 @@ public interface IThemeTenantProvider
 /// <summary>The default for a single-tenant site: every request belongs to one tenant.</summary>
 public sealed class SingleTenantThemeTenantProvider : IThemeTenantProvider
 {
+    /// <summary>
+    /// Gets the tenant identifier.
+    /// </summary>
+    /// <returns>The tenant identifier.</returns>
     public string GetTenantId() => string.Empty;
 }

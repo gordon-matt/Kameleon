@@ -9,6 +9,9 @@ public sealed record ThemeDescriptor
     /// </summary>
     public required string Id { get; init; }
 
+    /// <summary>
+    /// Gets or sets the name.
+    /// </summary>
     public required string Name { get; init; }
 
     /// <summary>
@@ -17,8 +20,14 @@ public sealed record ThemeDescriptor
     /// </summary>
     public string Version { get; init; } = "1.0.0";
 
+    /// <summary>
+    /// Gets or sets the description.
+    /// </summary>
     public string? Description { get; init; }
 
+    /// <summary>
+    /// Gets or sets the author.
+    /// </summary>
     public string? Author { get; init; }
 
     /// <summary>An asset path, relative to the theme's assets, of an image shown on the admin screens.</summary>
@@ -33,5 +42,8 @@ public sealed record ThemeDescriptor
     /// <summary>The layout used when nobody has chosen one. Null means the first in <see cref="ITheme.Layouts"/>.</summary>
     public string? DefaultLayoutId { get; init; }
 
+    /// <summary>
+    /// Gets or sets a value indicating whether this instance is supports right to left.
+    /// </summary>
     public bool SupportsRightToLeft { get; init; }
 }

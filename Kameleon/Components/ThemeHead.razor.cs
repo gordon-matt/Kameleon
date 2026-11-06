@@ -13,8 +13,12 @@ public partial class ThemeHead : IDisposable
     [Inject]
     private ThemeState State { get; set; } = default!;
 
+    /// <summary>
+    /// Releases the resources used by this instance.
+    /// </summary>
     public void Dispose() => State.Changed -= OnThemeChanged;
 
+    /// <inheritdoc/>
     protected override async Task OnInitializedAsync()
     {
         State.Changed += OnThemeChanged;

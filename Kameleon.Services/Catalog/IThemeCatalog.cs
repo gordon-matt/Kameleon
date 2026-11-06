@@ -12,6 +12,11 @@ public interface IThemeCatalog
     /// <summary>Themes that were found but not registered, and why.</summary>
     IReadOnlyList<ThemeCatalogError> Errors { get; }
 
+    /// <summary>
+    /// Finds the value.
+    /// </summary>
+    /// <param name="themeId">The theme identifier.</param>
+    /// <returns>The theme info.</returns>
     ThemeInfo? Find(string? themeId);
 
     /// <summary>The folder a static theme's assets are served from, or null for any other theme.</summary>

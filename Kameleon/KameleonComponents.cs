@@ -2,6 +2,9 @@ using System.Reflection;
 
 namespace Kameleon;
 
+/// <summary>
+/// Provides kameleon components.
+/// </summary>
 public static class KameleonComponents
 {
     /// <summary>

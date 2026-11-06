@@ -15,7 +15,19 @@ public interface IThemeAdminService
     /// <summary>Whether the tenant offers the theme. The default theme cannot be turned off.</summary>
     Task<Result> SetEnabledAsync(string themeId, bool enabled, CancellationToken cancellationToken = default);
 
+    /// <summary>
+    /// Sets the allow user override.
+    /// </summary>
+    /// <param name="allow">The allow.</param>
+    /// <param name="cancellationToken">A token that can be used to cancel the operation.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the result.</returns>
     Task<Result> SetAllowUserOverrideAsync(bool allow, CancellationToken cancellationToken = default);
 
+    /// <summary>
+    /// Saves the settings.
+    /// </summary>
+    /// <param name="request">The request.</param>
+    /// <param name="cancellationToken">A token that can be used to cancel the operation.</param>
+    /// <returns>A task that represents the asynchronous operation. The task result contains the result.</returns>
     Task<Result> SaveSettingsAsync(SaveThemeSettingsRequest request, CancellationToken cancellationToken = default);
 }

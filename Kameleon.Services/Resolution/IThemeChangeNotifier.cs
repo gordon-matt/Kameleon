@@ -9,8 +9,17 @@ public interface IThemeChangeNotifier
     /// <summary>Raised after the cache is cleared. It can fire on any thread.</summary>
     event EventHandler<ThemeChangedEventArgs>? Changed;
 
+    /// <summary>
+    /// Performs the tenant changed operation.
+    /// </summary>
+    /// <param name="tenantId">The tenant identifier.</param>
     void TenantChanged(string tenantId);
 
+    /// <summary>
+    /// Performs the user changed operation.
+    /// </summary>
+    /// <param name="tenantId">The tenant identifier.</param>
+    /// <param name="userId">The user identifier.</param>
     void UserChanged(string tenantId, string userId);
 
     /// <summary>For changes that can affect every tenant, such as disabling a theme or reloading the catalog.</summary>
@@ -21,8 +30,14 @@ public interface IThemeChangeNotifier
 /// <param name="UserId">Set when only one user's choice changed.</param>
 public sealed class ThemeChangedEventArgs(string? tenantId, string? userId) : EventArgs
 {
+    /// <summary>
+    /// Gets the tenant identifier.
+    /// </summary>
     public string? TenantId { get; } = tenantId;
 
+    /// <summary>
+    /// Gets the user identifier.
+    /// </summary>
     public string? UserId { get; } = userId;
 
     /// <summary>Whether a circuit showing this tenant and user needs to resolve again.</summary>

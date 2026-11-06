@@ -11,6 +11,9 @@ public partial class ThemeRegion : IDisposable
     [CascadingParameter]
     private ThemeRegionRegistry? Registry { get; set; }
 
+    /// <summary>
+    /// Gets or sets the name.
+    /// </summary>
     [Parameter, EditorRequired]
     public string Name { get; set; } = string.Empty;
 
@@ -63,6 +66,9 @@ public partial class ThemeRegion : IDisposable
         }
     }
 
+    /// <summary>
+    /// Releases the resources used by this instance.
+    /// </summary>
     public void Dispose()
     {
         if (subscribed is not null)
@@ -71,6 +77,7 @@ public partial class ThemeRegion : IDisposable
         }
     }
 
+    /// <inheritdoc/>
     protected override void OnParametersSet()
     {
         if (ReferenceEquals(subscribed, Registry))

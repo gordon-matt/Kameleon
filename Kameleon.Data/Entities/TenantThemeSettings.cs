@@ -3,6 +3,9 @@ namespace Kameleon.Data.Entities;
 /// <summary>One row per tenant. A tenant with no row uses the defaults in the application's options.</summary>
 public class TenantThemeSettings : BaseEntity<int>
 {
+    /// <summary>
+    /// Gets or sets the tenant identifier.
+    /// </summary>
     public string TenantId { get; set; } = string.Empty;
 
     /// <summary>
@@ -14,15 +17,31 @@ public class TenantThemeSettings : BaseEntity<int>
     /// <summary>A layout of <see cref="DefaultThemeId"/>. Null means that theme's default layout.</summary>
     public string? DefaultLayoutId { get; set; }
 
+    /// <summary>
+    /// Gets or sets a value indicating whether this instance is allow user override.
+    /// </summary>
     public bool AllowUserOverride { get; set; }
 
+    /// <summary>
+    /// Gets or sets the updated at utc.
+    /// </summary>
     public DateTime UpdatedAtUtc { get; set; }
 
+    /// <summary>
+    /// Gets or sets the updated by.
+    /// </summary>
     public string? UpdatedBy { get; set; }
 }
 
+/// <summary>
+/// Represents the tenant theme settings map.
+/// </summary>
 public sealed class TenantThemeSettingsMap : IEntityTypeConfiguration<TenantThemeSettings>
 {
+    /// <summary>
+    /// Configures the value.
+    /// </summary>
+    /// <param name="builder">The builder.</param>
     public void Configure(EntityTypeBuilder<TenantThemeSettings> builder)
     {
         builder.ToTable(Constants.Tables.TenantSettings);

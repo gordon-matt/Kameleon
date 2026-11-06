@@ -14,6 +14,7 @@ public partial class ThemeCatalogPage
     [Inject]
     private NavigationManager Navigation { get; set; } = default!;
 
+    /// <inheritdoc/>
     protected override void OnInitialized()
     {
         isDefaultPath = string.Equals(Options.Value.AdminPath, KameleonOptions.DefaultAdminPath, StringComparison.OrdinalIgnoreCase);

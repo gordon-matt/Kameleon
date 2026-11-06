@@ -38,6 +38,11 @@ public sealed class ThemeRegionRegistry(IReadOnlyDictionary<string, IReadOnlyLis
     /// <summary>Components the host renders in the region when no page supplies content for it.</summary>
     public IReadOnlyList<Type> GetHostContent(string region) => hostContent.GetValueOrDefault(region) ?? [];
 
+    /// <summary>
+    /// Determines whether this instance has the content.
+    /// </summary>
+    /// <param name="region">The region.</param>
+    /// <returns>true when the condition is met; otherwise, false.</returns>
     public bool HasContent(string region) => HasPageContent(region) || GetHostContent(region).Count > 0;
 
     internal void Set(object owner, string region, RenderFragment? fragment)

@@ -24,13 +24,27 @@ public sealed record ThemeContext
     /// <summary>The theme's settings: its defaults with the tenant's saved values on top.</summary>
     public IReadOnlyDictionary<string, string> Settings { get; init; } = ReadOnlyDictionary<string, string>.Empty;
 
+    /// <summary>
+    /// Gets the theme identifier.
+    /// </summary>
     public string? ThemeId => Theme?.Id;
 
+    /// <summary>
+    /// Gets the none.
+    /// </summary>
+    /// <param name="tenantId">The tenant identifier.</param>
+    /// <param name="userId">The user identifier.</param>
+    /// <returns>The none.</returns>
     public static ThemeContext None(string tenantId, string? userId) => new() { TenantId = tenantId, UserId = userId };
 
     /// <inheritdoc cref="ThemeInfo.Asset"/>
     public string Asset(string path) => Theme?.Asset(path) ?? path;
 
+    /// <summary>
+    /// Gets the setting.
+    /// </summary>
+    /// <param name="key">The key.</param>
+    /// <returns>The setting.</returns>
     public string? Setting(string key) => Settings.GetValueOrDefault(key);
 
     /// <summary>True when a <see cref="ThemeSettingKind.Boolean"/> setting is on.</summary>
