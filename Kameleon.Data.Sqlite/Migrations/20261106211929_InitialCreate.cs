@@ -12,7 +12,7 @@ namespace Kameleon.Data.Sqlite.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "KameleonCatalogEntries",
+                name: "Kameleon_CatalogEntries",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -25,11 +25,11 @@ namespace Kameleon.Data.Sqlite.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KameleonCatalogEntries", x => x.Id);
+                    table.PrimaryKey("PK_Kameleon_CatalogEntries", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "KameleonTenantSettings",
+                name: "Kameleon_TenantSettings",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -43,11 +43,11 @@ namespace Kameleon.Data.Sqlite.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KameleonTenantSettings", x => x.Id);
+                    table.PrimaryKey("PK_Kameleon_TenantSettings", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "KameleonTenantThemes",
+                name: "Kameleon_TenantThemes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -62,11 +62,11 @@ namespace Kameleon.Data.Sqlite.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KameleonTenantThemes", x => x.Id);
+                    table.PrimaryKey("PK_Kameleon_TenantThemes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "KameleonUserPreferences",
+                name: "Kameleon_UserPreferences",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -78,35 +78,35 @@ namespace Kameleon.Data.Sqlite.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KameleonUserPreferences", x => x.Id);
+                    table.PrimaryKey("PK_Kameleon_UserPreferences", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_KameleonCatalogEntries_ThemeId",
-                table: "KameleonCatalogEntries",
+                name: "IX_Kameleon_CatalogEntries_ThemeId",
+                table: "Kameleon_CatalogEntries",
                 column: "ThemeId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_KameleonTenantSettings_TenantId",
-                table: "KameleonTenantSettings",
+                name: "IX_Kameleon_TenantSettings_TenantId",
+                table: "Kameleon_TenantSettings",
                 column: "TenantId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_KameleonTenantThemes_TenantId_ThemeId",
-                table: "KameleonTenantThemes",
+                name: "IX_Kameleon_TenantThemes_TenantId_ThemeId",
+                table: "Kameleon_TenantThemes",
                 columns: new[] { "TenantId", "ThemeId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_KameleonTenantThemes_ThemeId",
-                table: "KameleonTenantThemes",
+                name: "IX_Kameleon_TenantThemes_ThemeId",
+                table: "Kameleon_TenantThemes",
                 column: "ThemeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_KameleonUserPreferences_TenantId_UserId",
-                table: "KameleonUserPreferences",
+                name: "IX_Kameleon_UserPreferences_TenantId_UserId",
+                table: "Kameleon_UserPreferences",
                 columns: new[] { "TenantId", "UserId" },
                 unique: true);
         }
@@ -115,16 +115,16 @@ namespace Kameleon.Data.Sqlite.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "KameleonCatalogEntries");
+                name: "Kameleon_CatalogEntries");
 
             migrationBuilder.DropTable(
-                name: "KameleonTenantSettings");
+                name: "Kameleon_TenantSettings");
 
             migrationBuilder.DropTable(
-                name: "KameleonTenantThemes");
+                name: "Kameleon_TenantThemes");
 
             migrationBuilder.DropTable(
-                name: "KameleonUserPreferences");
+                name: "Kameleon_UserPreferences");
         }
     }
 }

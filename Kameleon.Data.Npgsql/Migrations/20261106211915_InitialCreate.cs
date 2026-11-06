@@ -12,8 +12,12 @@ namespace Kameleon.Data.Npgsql.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "kmln");
+
             migrationBuilder.CreateTable(
-                name: "KameleonCatalogEntries",
+                name: "CatalogEntries",
+                schema: "kmln",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -26,11 +30,12 @@ namespace Kameleon.Data.Npgsql.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KameleonCatalogEntries", x => x.Id);
+                    table.PrimaryKey("PK_CatalogEntries", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "KameleonTenantSettings",
+                name: "TenantSettings",
+                schema: "kmln",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -44,11 +49,12 @@ namespace Kameleon.Data.Npgsql.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KameleonTenantSettings", x => x.Id);
+                    table.PrimaryKey("PK_TenantSettings", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "KameleonTenantThemes",
+                name: "TenantThemes",
+                schema: "kmln",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -63,11 +69,12 @@ namespace Kameleon.Data.Npgsql.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KameleonTenantThemes", x => x.Id);
+                    table.PrimaryKey("PK_TenantThemes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "KameleonUserPreferences",
+                name: "UserPreferences",
+                schema: "kmln",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -79,35 +86,40 @@ namespace Kameleon.Data.Npgsql.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_KameleonUserPreferences", x => x.Id);
+                    table.PrimaryKey("PK_UserPreferences", x => x.Id);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_KameleonCatalogEntries_ThemeId",
-                table: "KameleonCatalogEntries",
+                name: "IX_CatalogEntries_ThemeId",
+                schema: "kmln",
+                table: "CatalogEntries",
                 column: "ThemeId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_KameleonTenantSettings_TenantId",
-                table: "KameleonTenantSettings",
+                name: "IX_TenantSettings_TenantId",
+                schema: "kmln",
+                table: "TenantSettings",
                 column: "TenantId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_KameleonTenantThemes_TenantId_ThemeId",
-                table: "KameleonTenantThemes",
+                name: "IX_TenantThemes_TenantId_ThemeId",
+                schema: "kmln",
+                table: "TenantThemes",
                 columns: new[] { "TenantId", "ThemeId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_KameleonTenantThemes_ThemeId",
-                table: "KameleonTenantThemes",
+                name: "IX_TenantThemes_ThemeId",
+                schema: "kmln",
+                table: "TenantThemes",
                 column: "ThemeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_KameleonUserPreferences_TenantId_UserId",
-                table: "KameleonUserPreferences",
+                name: "IX_UserPreferences_TenantId_UserId",
+                schema: "kmln",
+                table: "UserPreferences",
                 columns: new[] { "TenantId", "UserId" },
                 unique: true);
         }
@@ -116,16 +128,20 @@ namespace Kameleon.Data.Npgsql.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "KameleonCatalogEntries");
+                name: "CatalogEntries",
+                schema: "kmln");
 
             migrationBuilder.DropTable(
-                name: "KameleonTenantSettings");
+                name: "TenantSettings",
+                schema: "kmln");
 
             migrationBuilder.DropTable(
-                name: "KameleonTenantThemes");
+                name: "TenantThemes",
+                schema: "kmln");
 
             migrationBuilder.DropTable(
-                name: "KameleonUserPreferences");
+                name: "UserPreferences",
+                schema: "kmln");
         }
     }
 }

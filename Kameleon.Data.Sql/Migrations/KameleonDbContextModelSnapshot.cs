@@ -17,6 +17,7 @@ namespace Kameleon.Data.Sql.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("kmln")
                 .HasAnnotation("ProductVersion", "10.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
@@ -67,7 +68,7 @@ namespace Kameleon.Data.Sql.Migrations
                     b.HasIndex("TenantId", "ThemeId")
                         .IsUnique();
 
-                    b.ToTable("KameleonTenantThemes", (string)null);
+                    b.ToTable("TenantThemes", "kmln");
                 });
 
             modelBuilder.Entity("Kameleon.Data.Entities.TenantThemeSettings", b =>
@@ -110,7 +111,7 @@ namespace Kameleon.Data.Sql.Migrations
                     b.HasIndex("TenantId")
                         .IsUnique();
 
-                    b.ToTable("KameleonTenantSettings", (string)null);
+                    b.ToTable("TenantSettings", "kmln");
                 });
 
             modelBuilder.Entity("Kameleon.Data.Entities.ThemeCatalogEntry", b =>
@@ -146,7 +147,7 @@ namespace Kameleon.Data.Sql.Migrations
                     b.HasIndex("ThemeId")
                         .IsUnique();
 
-                    b.ToTable("KameleonCatalogEntries", (string)null);
+                    b.ToTable("CatalogEntries", "kmln");
                 });
 
             modelBuilder.Entity("Kameleon.Data.Entities.UserThemePreference", b =>
@@ -183,7 +184,7 @@ namespace Kameleon.Data.Sql.Migrations
                     b.HasIndex("TenantId", "UserId")
                         .IsUnique();
 
-                    b.ToTable("KameleonUserPreferences", (string)null);
+                    b.ToTable("UserPreferences", "kmln");
                 });
 #pragma warning restore 612, 618
         }

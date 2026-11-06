@@ -31,7 +31,7 @@ public sealed class KameleonDbContextFactory(string connectionString) : IKameleo
 
         optionsBuilder.UseSqlServer(connectionString, sql => sql
             .MigrationsAssembly(typeof(KameleonDbContext).Assembly.GetName().Name)
-            .MigrationsHistoryTable(Constants.MigrationsHistoryTable));
+            .MigrationsHistoryTable(Constants.MigrationsHistoryTable, Constants.Schema));
 
         return optionsBuilder.Options;
     }

@@ -11,28 +11,36 @@ public static class Constants
     /// </summary>
     public const string MigrationsHistoryTable = "__KameleonMigrationsHistory";
 
+    /// <summary>Database schema for providers that support one (SQL Server and PostgreSQL).</summary>
+    public const string Schema = "kmln";
+
     /// <summary>
-    /// Prefixed rather than schema-qualified, because SQLite and MySQL have no schemas and one naming
-    /// scheme across every provider is easier to find in a shared database.
+    /// Prepended to every table name on providers without schemas. In MySQL a schema is a database,
+    /// and SQLite has none, so the tables stay unqualified and are prefixed instead.
+    /// </summary>
+    public const string TablePrefix = "Kameleon_";
+
+    /// <summary>
+    /// Unqualified table names. The schema or <see cref="TablePrefix"/> is applied by the context.
     /// </summary>
     public static class Tables
     {
         /// <summary>
         /// The catalog entries constant.
         /// </summary>
-        public const string CatalogEntries = "KameleonCatalogEntries";
+        public const string CatalogEntries = "CatalogEntries";
         /// <summary>
         /// The tenant settings constant.
         /// </summary>
-        public const string TenantSettings = "KameleonTenantSettings";
+        public const string TenantSettings = "TenantSettings";
         /// <summary>
         /// The tenant themes constant.
         /// </summary>
-        public const string TenantThemes = "KameleonTenantThemes";
+        public const string TenantThemes = "TenantThemes";
         /// <summary>
         /// The user preferences constant.
         /// </summary>
-        public const string UserPreferences = "KameleonUserPreferences";
+        public const string UserPreferences = "UserPreferences";
     }
 
     /// <summary>

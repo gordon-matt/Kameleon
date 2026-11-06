@@ -60,7 +60,7 @@ namespace Kameleon.Data.Sqlite.Migrations
                     b.HasIndex("TenantId", "ThemeId")
                         .IsUnique();
 
-                    b.ToTable("KameleonTenantThemes", (string)null);
+                    b.ToTable("Kameleon_TenantThemes", (string)null);
                 });
 
             modelBuilder.Entity("Kameleon.Data.Entities.TenantThemeSettings", b =>
@@ -101,7 +101,7 @@ namespace Kameleon.Data.Sqlite.Migrations
                     b.HasIndex("TenantId")
                         .IsUnique();
 
-                    b.ToTable("KameleonTenantSettings", (string)null);
+                    b.ToTable("Kameleon_TenantSettings", (string)null);
                 });
 
             modelBuilder.Entity("Kameleon.Data.Entities.ThemeCatalogEntry", b =>
@@ -135,7 +135,7 @@ namespace Kameleon.Data.Sqlite.Migrations
                     b.HasIndex("ThemeId")
                         .IsUnique();
 
-                    b.ToTable("KameleonCatalogEntries", (string)null);
+                    b.ToTable("Kameleon_CatalogEntries", (string)null);
                 });
 
             modelBuilder.Entity("Kameleon.Data.Entities.UserThemePreference", b =>
@@ -170,7 +170,7 @@ namespace Kameleon.Data.Sqlite.Migrations
                     b.HasIndex("TenantId", "UserId")
                         .IsUnique();
 
-                    b.ToTable("KameleonUserPreferences", (string)null);
+                    b.ToTable("Kameleon_UserPreferences", (string)null);
                 });
 #pragma warning restore 612, 618
         }
