@@ -3,7 +3,8 @@ namespace Kameleon.Components;
 /// <summary>
 /// The current theme's stylesheets, colour settings and scripts. Place it in the document's <c>&lt;head&gt;</c>
 /// itself rather than in <c>HeadContent</c>, because a page's own <c>HeadContent</c> replaces any other.
-/// Give it an interactive render mode for the styles to follow a change without a reload.
+/// This markup is the first paint. While a circuit is open, a change of theme replaces these assets in
+/// place, so the next page keeps the layout and the styles together.
 /// </summary>
 public partial class ThemeHead : IDisposable
 {

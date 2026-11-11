@@ -27,9 +27,6 @@ public partial class ThemePicker
     private IUserThemeService Themes { get; set; } = default!;
 
     [Inject]
-    private NavigationManager Navigation { get; set; } = default!;
-
-    [Inject]
     private ToastService Toasts { get; set; } = default!;
 
     private string DefaultOptionText
@@ -61,7 +58,9 @@ public partial class ThemePicker
             return;
         }
 
-        // A theme can change the document head, which only a full load replaces.
-        Navigation.Refresh(forceReload: true);
+        if (choices is not null)
+        {
+            choices = choices with { SelectedThemeId = string.IsNullOrEmpty(themeId) ? null : themeId };
+        }
     }
 }

@@ -37,6 +37,7 @@ public static class ServiceCollectionExtensions
             services.TryAddScoped<CurrentPrincipal>();
             services.TryAddScoped<IUserContextService, ClaimsUserContextService>();
             services.TryAddScoped<ThemeState>();
+            services.TryAddEnumerable(ServiceDescriptor.Scoped<Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler, ThemeDocumentSync>());
 
             services.AddAuthorization();
             services.AddOptions<AuthorizationOptions>()

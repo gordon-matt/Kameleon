@@ -1,16 +1,17 @@
-<link rel="stylesheet" href="_content/Kameleon/kameleon.css" />
+<link rel="stylesheet" href="_content/Kameleon/kameleon.css" data-kameleon="base" />
 @if (context?.Theme is { } theme)
 {
     @foreach (string url in theme.StylesheetUrls)
     {
-        <link rel="stylesheet" href="@url" />
+        <link rel="stylesheet" href="@url" data-kameleon="stylesheet" />
     }
     @if (variables is not null)
     {
-        <style>@variables</style>
+        <style data-kameleon="variables">@variables</style>
     }
     @foreach (string url in theme.ScriptUrls)
     {
-        <script src="@url" defer></script>
+        <script src="@url" defer data-kameleon="script"></script>
     }
 }
+<script src="_content/Kameleon/kameleon.js"></script>
