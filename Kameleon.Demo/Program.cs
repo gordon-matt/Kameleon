@@ -73,7 +73,8 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
-app.MapStaticAssets();
+app.MapStaticAssets();
+app.MapNetForgeAssets();
 app.UseAntiforgery();
 
 app.UseAuthentication();
